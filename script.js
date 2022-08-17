@@ -2,6 +2,8 @@ const country = document.getElementById("city");
 const temperature = document.getElementById("temperature");
 const weatherCondition = document.getElementById("weather-condition");
 const userLocation = document.getElementById("user-location");
+const humidity = document.getElementById("humidity");
+const button = document.querySelector(".btn");
 const api_key = "96bb9fc34f6665bc2248a84f52fbf685";
 
 async function getWeather(location) {
@@ -12,24 +14,37 @@ async function getWeather(location) {
     );
     const data = await response.json();
     // console.log(data);
-    temperature.innerHTML = `The temparature in ${location} is ${data.main.temp}°C`;
-    country.innerHTML = data.sys.country;
-    weatherCondition.innerHTML = data.weather[0].description;
+
+    const { main, weather } = data;
+
+    temperature.innerHTML = `the temperature in ${location} is ${main.temp}°C`;
+    weatherCondition.innerHTML = `the weather contains ${weather[0].description}`;
+    humidity.innerHTML = `${location} is ${main.humidity}% humid`;
   } catch (error) {
-    console.log(error);
+    // alert(error);
+    // if (userLocation.value === "") {
+    //   alert("Type something");
+    // } else{
+    alert(`${location} not found`);
+
+    // }
   }
 }
+// userLocation.addEventListener("input", (e) => {
+//   e.preventDefault();
+//   // console.log(e.key)
+//   // const userTyped = e.target.value;
+//   // console.log(userLocation.value);
+//   if (e.key === "Enter") {
+//     getWeather(userLocation.value);
+//   }
+// });
 
-getWeather("Abuja");
+button.addEventListener("click", (e) => {
+  e.preventDefault();
+  // console.log(userLocation.value);
 
-userLocation.addEventListener("input", (e) => {
-  // console.log(e.key)
-  const userTyped = e.target.value;
-  console.log(userTyped);
-  if (e.key === "Enter") {
-    // console.log(userTyped.value)
-    e.preventDefault();
-  }
+  getWeather(userLocation.value);
+
+  userLocation.value = "";
 });
-
-console.log(userLocation.innerText);
