@@ -13,26 +13,32 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://bootswatch.com/quartz/">
+    <link rel="stylesheet" href="https://bootswatch.com/quartz/" />
   </head>
-  <body>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    "
+  >
     weather app
     <div class="input">
-      <input type="text" id="user-location" placeholder="Enter your location" />
-      <button class="btn">Search</button>
+      <input
+        type="text"
+        id="user-location"
+        placeholder="Enter your location..."
+      />
+      <button class="btn btn-warning">Search</button>
     </div>
     <div class="container">
-      <div id="city"></div>
-      <div id="temperature"></div>
-      <div id="humidity"></div>
-      <div id="weather-condition"></div>
+      <div id="city" class="content"></div>
+      <div id="temperature" class="content"></div>
+      <div id="humidity" class="content"></div>
+      <div id="weather-condition" class="content"></div>
     </div>
-
-
-
-    
-    
-    
   </body>
 
   <script src="script.js"></script>
